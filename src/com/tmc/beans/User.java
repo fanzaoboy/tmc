@@ -40,5 +40,12 @@ public class User {
 		this.passWord = passWord;
 		this.mobileNo = mobileNo;
 	}
+	
+	public User(String userName) {
+		super();
+		this.userName = userName;
+	}
+	
+	
 
 }

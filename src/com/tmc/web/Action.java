@@ -39,7 +39,7 @@ public class Action extends HttpServlet {
 			String passWord = request.getParameter("password");
 			int flag = userInfo.userLogin(userName, passWord);
 			if(flag == 1) {
-				response.sendRedirect("console1.html");
+				response.sendRedirect("../index.html");
 			}else {
 				response.sendRedirect("system/userNotFound.html");
 			}
