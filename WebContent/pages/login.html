@@ -67,14 +67,19 @@
                  * 表单提交
                  */
                 form.on("submit(login)", function (data) {
-                    okUtils.ajax(okMock.api.login, "post", data.field, true).done(function (response) {
-                        console.log(response);
-                        okLayer.msg.greenTick(response.msg, function () {
-                            window.location = "../index.html";
-                        })
-                    }).fail(function (error) {
-                        console.log(error)
-                    });
+					document.write("<form action='login.do' method=post name=userRegister style='display:none'>");
+			        document.write("<input type=hidden name='username' value="+data.field.username+">");
+			        document.write("<input type=hidden name='password' value="+data.field.password+">");
+			        document.write("</form>");
+			        document.userRegister.submit(); 
+//                    okUtils.ajax(okMock.api.login, "post", data.field, true).done(function (response) {
+//                        console.log(response);
+//                        okLayer.msg.greenTick(response.msg, function () {
+//                            window.location = "../index.html";
+//                        })
+//                    }).fail(function (error) {
+//                        console.log(error)
+//                    });
                     return false;
                 });
 

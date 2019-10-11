@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tmc.DAO.UserDAO;
+import com.tmc.DAOImpl.UserDAOImpl;
+
 public class Action extends HttpServlet {
 
 	/**
@@ -24,9 +27,22 @@ public class Action extends HttpServlet {
 		String url = request.getRequestURI();
 		// 截取请求
 		String path = url.substring(url.lastIndexOf("/"), url.lastIndexOf("."));
+		UserDAO userInfo = new UserDAOImpl();
 		if(path.equals("/register")) {
 			String userName = request.getParameter("username");
-			System.out.println("username:" + userName);
+			String passWord = request.getParameter("password");
+			String phone = request.getParameter("phone");
+			userInfo.userAdd(userName, passWord, phone);
+			response.sendRedirect("login.html");
+		}else if (path.equals("/login")) {
+			String userName = request.getParameter("username");
+			String passWord = request.getParameter("password");
+			int flag = userInfo.userLogin(userName, passWord);
+			if(flag == 1) {
+				response.sendRedirect("console1.html");
+			}else {
+				response.sendRedirect("system/userNotFound.html");
+			}
 		}
 	}
 }
